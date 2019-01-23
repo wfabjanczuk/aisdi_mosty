@@ -1,5 +1,7 @@
 *
 */*
 !.gitignore
+!makefile
+!graf.txt
 !./src/*
 !README.md
