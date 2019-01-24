@@ -42,6 +42,8 @@ bool graph::areAllVisited(vector<bool> visited)
 
 bool graph::isWideBridge(size_t vertex_1, size_t vertex_2)
 {
+	if (adjacency_matrix[vertex_1][vertex_2] == 0)
+		return false;
 	vector<bool> visited(vertices, false);
 	visited[vertex_1] = visited[vertex_2] = true;
 	size_t vertex_start = differentVertex(vertex_1, vertex_2);
