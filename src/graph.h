@@ -10,10 +10,10 @@ using namespace std;
 class graph
 {
 	size_t vertices;
-	vector<vector<size_t>> adjacency_matrix;
+	vector<bool> adjacency_matrix;
 
 	size_t differentVertex(size_t vertex_1, size_t vertex_2);
-	void depthFirstSearch(size_t vertex_start, vector<bool> &visited);
+	void depthFirstWalk(size_t vertex_start, vector<bool> &visited);
 	bool areAllVisited(vector<bool> visited);
 	bool isWideBridge(size_t vertex_1, size_t vertex_2);
 public:
