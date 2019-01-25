@@ -12,9 +12,11 @@ class graph
 	size_t vertices;
 	vector<bool> adjacency_matrix;
 
+	inline bool edge(size_t vertex_1, size_t vertex_2);
+	inline void setEdge(size_t vertex_1, size_t vertex_2, bool status);
 	size_t differentVertex(size_t vertex_1, size_t vertex_2);
-	void depthFirstWalk(size_t vertex_start, vector<bool> &visited);
-	bool areAllVisited(vector<bool> visited);
+	void depthFirstWalk(size_t vertex_start, size_t &visited_count,
+			vector<bool> &visited);
 	bool isWideBridge(size_t vertex_1, size_t vertex_2);
 public:
 	explicit graph(size_t vertices_ext = 0);
