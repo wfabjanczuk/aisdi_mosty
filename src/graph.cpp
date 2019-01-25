@@ -1,7 +1,7 @@
 #include "graph.h"
 
-graph::graph(size_t vertices_ext) :
-		vertices(vertices_ext)
+graph::graph(size_t vertices_count) :
+		vertices(vertices_count)
 {
 	adjacency_matrix.assign(vertices * vertices, false);
 }
@@ -25,11 +25,20 @@ void graph::insertEdge(size_t vertex_1, size_t vertex_2)
 	setEdge(vertex_1, vertex_2, true);
 }
 
-size_t graph::differentVertex(size_t vertex_1, size_t vertex_2)
+size_t graph::differentVertex(vector<size_t> vertices_ext)
 {
 	for (size_t v = 0; v < vertices; v++)
-		if (v != vertex_1 && v != vertex_2)
+	{
+		bool different = true;
+		for (auto it = vertices_ext.begin(); it != vertices_ext.end(); ++it)
+			if (v == *it)
+			{
+				different = false;
+				break;
+			}
+		if (different)
 			return v;
+	}
 	throw logic_error("differentVertex failed.");
 }
 
@@ -49,7 +58,8 @@ bool graph::isWideBridge(size_t vertex_1, size_t vertex_2)
 		return false;
 	vector<bool> visited(vertices, false);
 	visited[vertex_1] = visited[vertex_2] = true;
-	size_t vertex_start = differentVertex(vertex_1, vertex_2);
+	size_t vertex_start = differentVertex(
+	{ vertex_1, vertex_2 });
 	size_t visited_count = 2;
 	depthFirstWalk(vertex_start, visited_count, visited);
 	return (visited_count != vertices);
