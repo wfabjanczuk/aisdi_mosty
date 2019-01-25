@@ -6,7 +6,7 @@ graph::graph(size_t vertices_count) :
 	adjacency_matrix.assign(vertices * vertices, false);
 }
 
-inline bool graph::edge(size_t vertex_1, size_t vertex_2)
+inline bool graph::edge(size_t vertex_1, size_t vertex_2) const
 {
 	return adjacency_matrix[vertex_1 * vertices + vertex_2];
 }
@@ -25,7 +25,7 @@ void graph::insertEdge(size_t vertex_1, size_t vertex_2)
 	setEdge(vertex_1, vertex_2, true);
 }
 
-size_t graph::differentVertex(vector<size_t> vertices_ext)
+size_t graph::differentVertex(vector<size_t> vertices_ext) const
 {
 	for (size_t v = 0; v < vertices; v++)
 	{
@@ -43,7 +43,7 @@ size_t graph::differentVertex(vector<size_t> vertices_ext)
 }
 
 void graph::depthFirstWalk(size_t vertex_start, size_t &visited_count,
-		vector<bool> &visited)
+		vector<bool> &visited) const
 {
 	visited_count++;
 	visited[vertex_start] = true;
@@ -52,7 +52,7 @@ void graph::depthFirstWalk(size_t vertex_start, size_t &visited_count,
 			depthFirstWalk(v, visited_count, visited);
 }
 
-bool graph::isWideBridge(size_t vertex_1, size_t vertex_2)
+bool graph::isWideBridge(size_t vertex_1, size_t vertex_2) const
 {
 	if (edge(vertex_1, vertex_2) == false)
 		return false;
@@ -65,7 +65,7 @@ bool graph::isWideBridge(size_t vertex_1, size_t vertex_2)
 	return (visited_count != vertices);
 }
 
-vector<pair<size_t, size_t>> graph::findWideBridges()
+vector<pair<size_t, size_t>> graph::findWideBridges() const
 {
 	vector<pair<size_t, size_t>> wide_bridges;
 	for (size_t v = 0; v < vertices; v++)
