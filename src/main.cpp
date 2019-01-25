@@ -11,9 +11,12 @@ int main()
 	graph g(vertices);
 	do
 	{
-		cin >> vertex_1 >> vertex_2;
+		cin >> vertex_1;
+		if (cin.eof() == true)
+			break;
+		cin >> vertex_2;
 		g.insertEdge(vertex_1, vertex_2);
-	} while (cin.eof() == false);
+	} while (true);
 
 	vector<pair<size_t, size_t>> wide_bridges = g.findWideBridges();
 	for (auto it = wide_bridges.begin(); it != wide_bridges.end(); ++it)
